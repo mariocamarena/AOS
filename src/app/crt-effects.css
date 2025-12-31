@@ -1,0 +1,125 @@
+/* ═══════════════════════════════════════════════════════════════════
+   CRT / RETRO SCREEN EFFECTS
+   Scanlines, film grain, vignette, and chromatic aberration
+═══════════════════════════════════════════════════════════════════ */
+
+/* Scanlines overlay - animated vertical scroll */
+.crt-scanlines {
+  position: relative;
+}
+
+.crt-scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+  animation: scanlines-scroll 8s linear infinite;
+}
+
+@keyframes scanlines-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100px;
+  }
+}
+
+/* Film grain overlay - animated */
+.crt-grain {
+  position: relative;
+}
+
+.crt-grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 99;
+  animation: grain-shift 0.5s steps(10) infinite;
+}
+
+@keyframes grain-shift {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-1%, -1%);
+  }
+  20% {
+    transform: translate(1%, 1%);
+  }
+  30% {
+    transform: translate(-2%, 0%);
+  }
+  40% {
+    transform: translate(0%, 2%);
+  }
+  50% {
+    transform: translate(-1%, 2%);
+  }
+  60% {
+    transform: translate(2%, -1%);
+  }
+  70% {
+    transform: translate(-2%, 1%);
+  }
+  80% {
+    transform: translate(1%, -2%);
+  }
+  90% {
+    transform: translate(0%, 1%);
+  }
+}
+
+/* Subtle vignette */
+.crt-vignette {
+  position: relative;
+}
+
+.crt-vignette::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  pointer-events: none;
+  z-index: 98;
+}
+
+/* Chromatic aberration on hover for special elements */
+.chromatic-hover {
+  transition: text-shadow 0.3s ease;
+}
+
+.chromatic-hover:hover {
+  text-shadow:
+    -1px 0 0 rgba(255, 0, 0, 0.15),
+    1px 0 0 rgba(0, 255, 255, 0.15);
+}
+
+/* CRT flicker animation (subtle) */
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.98; }
+  94% { opacity: 1; }
+}
+
+.crt-flicker {
+  animation: crt-flicker 4s infinite;
+}

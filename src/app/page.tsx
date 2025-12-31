@@ -1,101 +1,303 @@
-import Image from "next/image";
+import { FramePanel } from "@/components/FramePanel";
+import { MetaRow } from "@/components/MetaRow";
+import { Hero } from "@/components/Hero";
+import { HeroTicker } from "@/components/HeroTicker";
+import { CornerBrackets } from "@/components/CornerBrackets";
+import { ContactForm } from "@/components/ContactForm";
+
+// full project archive
+const projects = [
+  { id: "0001", year: "2024", tags: ["BRANDING", "IDENTITY"], title: "PROJECT ALPHA", desc: "VISUAL IDENTITY SYSTEM FOR PLACEHOLDER CLIENT" },
+  { id: "0002", year: "2024", tags: ["WEB"], title: "PROJECT BETA", desc: "WEBSITE DESIGN AND DEVELOPMENT" },
+  { id: "0003", year: "2024", tags: ["POSTERS"], title: "PROJECT GAMMA", desc: "EVENT POSTER SERIES" },
+  { id: "0004", year: "2023", tags: ["BRANDING"], title: "PROJECT DELTA", desc: "BRAND REFRESH FOR TECH STARTUP" },
+  { id: "0005", year: "2023", tags: ["WEB", "IDENTITY"], title: "PROJECT EPSILON", desc: "DIGITAL PLATFORM DESIGN" },
+  { id: "0006", year: "2023", tags: ["MISC"], title: "PROJECT ZETA", desc: "EXPERIMENTAL TYPE EXPLORATION" },
+  { id: "0007", year: "2022", tags: ["POSTERS"], title: "PROJECT ETA", desc: "CULTURAL INSTITUTION CAMPAIGN" },
+  { id: "0008", year: "2022", tags: ["BRANDING", "WEB"], title: "PROJECT THETA", desc: "FULL BRAND AND DIGITAL PACKAGE" },
+];
+
+const filters = ["ALL", "BRANDING", "POSTERS", "WEB", "MISC"];
+
+// info section data
+const tools = ["FIGMA", "ILLUSTRATOR", "PHOTOSHOP", "AFTER EFFECTS", "INDESIGN", "BLENDER"];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="space-y-0">
+      {/* ═══════════════════════════════════════════════════════════════════
+          HERO SECTION (INDEX)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section id="hero" className="scroll-mt-24 bg-field overflow-visible relative">
+        <div className="max-w-6xl px-6 pt-8 pb-12 overflow-visible">
+          <Hero />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <HeroTicker />
+      </section>
+
+      {/* Section divider */}
+      <div className="divider-animated" />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          INFO SECTION (ABOUT)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section id="info" className="scroll-mt-24 bg-field-alt">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-3 h-px bg-cobalt" />
+            <h2 className="text-5xl font-sans font-bold text-cobalt chromatic-hover">INFO</h2>
+          </div>
+          <div className="flex gap-6">
+            <MetaRow label="SECTION" value="ABOUT" />
+            <MetaRow label="UPDATED" value="20XX" />
+          </div>
+
+          {/* bio */}
+          <CornerBrackets static corner="tl" className="mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FramePanel>
+                <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-4">
+                  BIO
+                </h3>
+              <div className="space-y-4 text-sm text-dark">
+                <p>
+                  PLACEHOLDER NAME IS A GRAPHIC DESIGNER BASED IN XXXX.
+                  FOCUSED ON CREATING SYSTEMATIC, GRID-DRIVEN VISUAL IDENTITIES.
+                </p>
+                <p>
+                  WITH XX YEARS OF EXPERIENCE WORKING ACROSS BRANDING,
+                  DIGITAL, AND PRINT MEDIUMS. CURRENTLY ACCEPTING NEW PROJECTS.
+                </p>
+              </div>
+            </FramePanel>
+
+            <FramePanel>
+              <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-4">
+                APPROACH
+              </h3>
+              <div className="space-y-4 text-sm text-dark">
+                <p>
+                  METHODICAL PROCESS. CLEAN EXECUTION.
+                  EVERY PROJECT BEGINS WITH RESEARCH AND ENDS WITH SYSTEMS.
+                </p>
+                <p>
+                  DESIGN SHOULD COMMUNICATE CLEARLY.
+                  NO DECORATION WITHOUT PURPOSE.
+                </p>
+              </div>
+            </FramePanel>
+            </div>
+          </CornerBrackets>
+
+          {/* quick info row */}
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <FramePanel>
+              <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-2">
+                SERVICES
+              </h3>
+              <p className="text-sm text-dark">
+                BRANDING / IDENTITY / WEB / PRINT / MOTION
+              </p>
+            </FramePanel>
+
+            <FramePanel>
+              <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-2">
+                STATUS
+              </h3>
+              <p className="text-sm text-cobalt font-semibold">
+                AVAILABLE FOR PROJECTS
+              </p>
+            </FramePanel>
+
+            <FramePanel>
+              <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-2">
+                CONTACT
+              </h3>
+              <p className="text-sm text-dark">
+                HELLO@PLACEHOLDER.COM
+              </p>
+            </FramePanel>
+          </div>
+
+          {/* toolbox */}
+          <CornerBrackets static corner="br" className="mt-4">
+            <FramePanel>
+              <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-4">
+                TOOLBOX
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                {tools.map((tool) => (
+                  <div key={tool} className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-cobalt"></span>
+                    <span className="font-mono text-xs text-dark">{tool}</span>
+                  </div>
+                ))}
+              </div>
+            </FramePanel>
+          </CornerBrackets>
+        </div>
+      </section>
+
+      {/* Section divider */}
+      <div className="divider-animated" />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          ARCHIVE SECTION (PROJECTS)
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section id="archive" className="scroll-mt-24 bg-field">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-3 h-px bg-cobalt" />
+            <h2 className="text-5xl font-sans font-bold text-cobalt chromatic-hover">ARCHIVE</h2>
+          </div>
+          <div className="flex gap-6">
+            <MetaRow label="TOTAL" value={`${projects.length.toString().padStart(4, "0")}`} />
+            <MetaRow label="VIEW" value="ALL" />
+          </div>
+
+          {/* filter stub */}
+          <div className="mt-8 flex flex-wrap gap-2">
+            {filters.map((filter, i) => (
+              <button
+                key={filter}
+                className={`font-mono text-xs uppercase tracking-wide px-3 py-1 border transition-colors hover-brackets ${
+                  i === 0
+                    ? "border-cobalt text-cobalt bg-surface"
+                    : "border-cyan text-muted hover:border-cobalt hover:text-cobalt"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          {/* project grid */}
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {projects.map((project) => (
+              <FramePanel key={project.id} brutalist className="cursor-pointer project-card stagger-brackets">
+                <span className="bracket bracket-tl" />
+                <span className="bracket bracket-tr" />
+                <span className="bracket bracket-bl" />
+                <span className="bracket bracket-br" />
+                {/* meta row */}
+                <div className="flex gap-4 mb-4">
+                  <MetaRow label="ID" value={project.id} />
+                  <MetaRow label="YEAR" value={project.year} />
+                </div>
+
+                {/* tags */}
+                <div className="flex gap-2 mb-3">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-[10px] uppercase tracking-mega text-cyan-dim bg-dark px-2 py-0.5"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* title + desc */}
+                <h3 className="text-lg font-sans font-semibold text-cobalt card-title">
+                  {project.title}
+                </h3>
+                <p className="mt-1 font-mono text-xs text-muted card-desc">
+                  {project.desc}
+                </p>
+              </FramePanel>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section divider */}
+      <div className="divider-animated" />
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CONTACT SECTION
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section id="contact" className="scroll-mt-24 bg-field-alt">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <div className="flex items-center gap-4 mb-4">
+            <span className="w-3 h-px bg-cobalt" />
+            <h2 className="text-5xl font-sans font-bold text-cobalt chromatic-hover">CONTACT</h2>
+          </div>
+          <div className="flex gap-6">
+            <MetaRow label="STATUS" value="ONLINE" />
+            <MetaRow label="RESPONSE" value="24-48H" />
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* contact form */}
+            <FramePanel>
+              <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-6">
+                SEND MESSAGE
+              </h3>
+              <ContactForm />
+            </FramePanel>
+
+            {/* contact info + QR */}
+            <div className="space-y-4">
+              <FramePanel>
+                <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-4">
+                  DIRECT
+                </h3>
+                <div className="space-y-3">
+                  <div>
+                    <span className="block font-mono text-[10px] uppercase tracking-mega text-muted">
+                      EMAIL
+                    </span>
+                    <span className="font-mono text-sm text-cobalt">
+                      HELLO@PLACEHOLDER.COM
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block font-mono text-[10px] uppercase tracking-mega text-muted">
+                      SOCIAL
+                    </span>
+                    <span className="font-mono text-sm text-dark">
+                      @PLACEHOLDER
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block font-mono text-[10px] uppercase tracking-mega text-muted">
+                      LOCATION
+                    </span>
+                    <span className="font-mono text-sm text-dark">
+                      XXXX, COUNTRY
+                    </span>
+                  </div>
+                </div>
+              </FramePanel>
+
+              {/* QR block - graphic element */}
+              <FramePanel className="flex flex-col items-center py-8">
+                <h3 className="font-mono text-[10px] uppercase tracking-mega text-muted mb-4">
+                  SCAN TO CONTACT
+                </h3>
+                {/* placeholder QR - just a styled box */}
+                <CornerBrackets all className="p-2">
+                  <div className="w-32 h-32 border-2 border-cobalt bg-surface grid grid-cols-4 grid-rows-4 gap-0.5 p-2">
+                    {[...Array(16)].map((_, i) => (
+                      <div
+                        key={i}
+                        className={`${
+                          [0, 2, 3, 5, 6, 8, 10, 12, 13, 15].includes(i)
+                            ? "bg-cobalt"
+                            : "bg-surface"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </CornerBrackets>
+                <span className="mt-4 font-mono text-[10px] uppercase tracking-mega text-muted">
+                  PLACEHOLDER QR
+                </span>
+              </FramePanel>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

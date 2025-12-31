@@ -1,27 +1,451 @@
+@import "./crt-effects.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --field: #d4d4d4;
+  --field-alt: #e4e9ef;
+  --surface: #ffffff;
+  --cobalt: #3d69f4;
+  --cyan: #7dd3fc;
+  --cyan-dim: #bae6fd;
+  --muted: #737373;
+  --dark: #171717;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--field);
+  color: var(--dark);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: clip;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* micro label style - used everywhere for metadata */
+.micro {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+}
+
+/* frame panel - the "window" card style */
+.frame {
+  background: var(--surface);
+  border: 1px solid var(--cyan);
+}
+
+.frame:hover,
+.frame:focus-within {
+  border-color: var(--cobalt);
+}
+
+/* focus states for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
+/* form field style - terminal vibe */
+input,
+textarea {
+  background: var(--surface);
+  border: 1px solid var(--cyan);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875rem;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--cobalt);
+  outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+}
+
+/* brutalist bento item - hover lift + hard shadow */
+.bento-item {
+  background: var(--surface);
+  border: 2px solid var(--dark);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bento-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--dark);
+  z-index: -1;
+  transition: transform 0.2s ease;
+  transform: translate(0, 0);
+}
+
+.bento-item:hover {
+  transform: translate(-4px, -4px);
+}
+
+.bento-item:hover::after {
+  transform: translate(8px, 8px);
+}
+
+.bento-item .content-wrapper {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* brutalist hover effect - subtle press-in on hover */
+.frame-brutalist {
+  position: relative;
+  isolation: isolate;
+  transform: translate(-6px, -6px);
+  box-shadow: 6px 6px 0 0 var(--cobalt);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.frame-brutalist:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 0 var(--cobalt);
+}
+
+/* L-shaped corner brackets - technical targeting aesthetic */
+.corner-brackets {
+  position: relative;
+}
+
+.corner-brackets::before,
+.corner-brackets::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--cyan);
+  border-style: solid;
+  pointer-events: none;
+  transition: border-color 0.15s ease;
+}
+
+.corner-brackets::before {
+  top: -4px;
+  left: -4px;
+  border-width: 2px 0 0 2px;
+}
+
+.corner-brackets::after {
+  bottom: -4px;
+  right: -4px;
+  border-width: 0 2px 2px 0;
+}
+
+.corner-brackets:hover::before,
+.corner-brackets:hover::after {
+  border-color: var(--cobalt);
+}
+
+/* Static variant - always cobalt, no hover effect */
+.corner-brackets-static.corner-brackets::before,
+.corner-brackets-static.corner-brackets::after,
+.corner-brackets-static.corner-brackets-full > .corner,
+.corner-brackets-static.corner-bracket-single::before {
+  border-color: var(--cobalt);
+}
+
+/* Single corner variants */
+.corner-bracket-single {
+  position: relative;
+  overflow: visible;
+}
+
+.corner-bracket-single::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--cyan);
+  border-style: solid;
+  pointer-events: none;
+  transition: border-color 0.15s ease;
+}
+
+.corner-bracket-tl::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+}
+
+.corner-bracket-tr::before {
+  top: 0;
+  right: 0;
+  border-width: 2px 2px 0 0;
+}
+
+.corner-bracket-bl::before {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 2px 2px;
+}
+
+.corner-bracket-br::before {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+}
+
+.corner-bracket-single:hover::before {
+  border-color: var(--cobalt);
+}
+
+/* Variant with all four corners */
+.corner-brackets-full {
+  position: relative;
+}
+
+.corner-brackets-full > .corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--cyan);
+  border-style: solid;
+  pointer-events: none;
+  transition: border-color 0.15s ease;
+}
+
+.corner-brackets-full > .corner-tl {
+  top: -3px;
+  left: -3px;
+  border-width: 1px 0 0 1px;
+}
+
+.corner-brackets-full > .corner-tr {
+  top: -3px;
+  right: -3px;
+  border-width: 1px 1px 0 0;
+}
+
+.corner-brackets-full > .corner-bl {
+  bottom: -3px;
+  left: -3px;
+  border-width: 0 0 1px 1px;
+}
+
+.corner-brackets-full > .corner-br {
+  bottom: -3px;
+  right: -3px;
+  border-width: 0 1px 1px 0;
+}
+
+.corner-brackets-full:hover > .corner {
+  border-color: var(--cobalt);
+}
+
+/* Section header decoration */
+.section-header {
+  position: relative;
+  display: inline-block;
+}
+
+.section-header::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -24px;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 2px;
+  background: var(--cobalt);
+}
+
+/* Crosshair/target decoration for special elements */
+.crosshair {
+  position: relative;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background: var(--cyan);
+  pointer-events: none;
+}
+
+.crosshair::before {
+  top: 50%;
+  left: -16px;
+  width: 8px;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.crosshair::after {
+  top: -8px;
+  left: 50%;
+  width: 1px;
+  height: 8px;
+  transform: translateX(-50%);
+}
+
+/* Corner brackets that appear on hover - for buttons */
+.hover-brackets {
+  position: relative;
+}
+
+.hover-brackets::before,
+.hover-brackets::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--cobalt);
+  border-style: solid;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.hover-brackets::before {
+  top: -4px;
+  left: -4px;
+  border-width: 2px 0 0 2px;
+  transform: translate(4px, 4px);
+}
+
+.hover-brackets::after {
+  bottom: -4px;
+  right: -4px;
+  border-width: 0 2px 2px 0;
+  transform: translate(-4px, -4px);
+}
+
+.hover-brackets:hover::before,
+.hover-brackets:hover::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Expanding line accent - grows on hover */
+.line-expand {
+  position: relative;
+}
+
+.line-expand::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1px;
+  width: 12px;
+  background: var(--cobalt);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.line-expand:hover::before {
+  width: 24px;
+}
+
+/* Project card enhancements */
+.project-card {
+  position: relative;
+}
+
+.project-card .card-title {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              letter-spacing 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .card-title {
+  transform: translateX(4px);
+}
+
+.project-card .card-desc {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.7;
+}
+
+.project-card:hover .card-desc {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Staggered corner brackets for cards */
+.stagger-brackets {
+  position: relative;
+}
+
+.stagger-brackets > .bracket {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--cobalt);
+  border-style: solid;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-brackets > .bracket-tl {
+  top: -4px;
+  left: -4px;
+  border-width: 2px 0 0 2px;
+  transform: translate(6px, 6px);
+  transition-delay: 0ms;
+}
+
+.stagger-brackets > .bracket-tr {
+  top: -4px;
+  right: -4px;
+  border-width: 2px 2px 0 0;
+  transform: translate(-6px, 6px);
+  transition-delay: 50ms;
+}
+
+.stagger-brackets > .bracket-bl {
+  bottom: -4px;
+  left: -4px;
+  border-width: 0 0 2px 2px;
+  transform: translate(6px, -6px);
+  transition-delay: 100ms;
+}
+
+.stagger-brackets > .bracket-br {
+  bottom: -4px;
+  right: -4px;
+  border-width: 0 2px 2px 0;
+  transform: translate(-6px, -6px);
+  transition-delay: 150ms;
+}
+
+.stagger-brackets:hover > .bracket {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Section divider line */
+.divider-animated {
+  height: 1px;
+  background: var(--cyan);
+}
+
+/* Meta row hover effect */
+.meta-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.meta-hover:hover {
+  transform: translateY(-2px);
 }
