@@ -1,9 +1,6 @@
-/* ═══════════════════════════════════════════════════════════════════
-   CRT / RETRO SCREEN EFFECTS
-   Scanlines, film grain, vignette, and chromatic aberration
-═══════════════════════════════════════════════════════════════════ */
+/* crt effects */
 
-/* Scanlines overlay - animated vertical scroll */
+/* scanlines */
 .crt-scanlines {
   position: relative;
 }
@@ -33,7 +30,7 @@
   }
 }
 
-/* Film grain overlay - animated */
+/* grain */
 .crt-grain {
   position: relative;
 }
@@ -82,7 +79,7 @@
   }
 }
 
-/* Subtle vignette */
+/* vignette */
 .crt-vignette {
   position: relative;
 }
@@ -101,7 +98,7 @@
   z-index: 98;
 }
 
-/* Chromatic aberration on hover for special elements */
+/* chromatic aberration */
 .chromatic-hover {
   transition: text-shadow 0.3s ease;
 }
@@ -112,7 +109,7 @@
     1px 0 0 rgba(0, 255, 255, 0.15);
 }
 
-/* CRT flicker animation (subtle) */
+/* flicker */
 @keyframes crt-flicker {
   0%, 100% { opacity: 1; }
   92% { opacity: 1; }

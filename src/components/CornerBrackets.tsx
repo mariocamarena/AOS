@@ -1,18 +1,17 @@
-// Decorative L-shaped corner brackets for technical/brutalist aesthetic
-// Wraps children with corner bracket decorations
+// corner bracket wrapper
 
 interface CornerBracketsProps {
   children: React.ReactNode;
   className?: string;
-  all?: boolean; // show all 4 corners instead of just top-left and bottom-right
-  static?: boolean; // always show cobalt color, no hover effect
-  corner?: "tl" | "tr" | "bl" | "br"; // show only a single corner
+  all?: boolean; // all 4 corners
+  static?: boolean; // no hover
+  corner?: "tl" | "tr" | "bl" | "br"; // single corner
 }
 
 export function CornerBrackets({ children, className = "", all = false, static: isStatic = false, corner }: CornerBracketsProps) {
   const staticClass = isStatic ? "corner-brackets-static" : "";
 
-  // Single corner mode
+  // single corner
   if (corner) {
     return (
       <div className={`corner-bracket-single corner-bracket-${corner} ${staticClass} ${className}`}>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatedInput, AnimatedTextarea } from "./AnimatedInput";
+import { InteractiveHoverButton } from "@/components/ui/InteractiveHoverButton";
 
 export function ContactForm() {
   const [name, setName] = useState("");
@@ -36,12 +37,11 @@ export function ContactForm() {
         rows={5}
       />
 
-      <button
+      <InteractiveHoverButton
         type="submit"
-        className="w-full bg-cobalt text-surface font-mono text-xs uppercase tracking-mega py-3 hover:bg-dark transition-colors hover-brackets"
-      >
-        SUBMIT
-      </button>
+        text="SUBMIT"
+        className="w-full py-3"
+      />
     </form>
   );
 }

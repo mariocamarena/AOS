@@ -22,7 +22,7 @@ body {
   overflow-x: clip;
 }
 
-/* micro label style - used everywhere for metadata */
+/* tiny labels */
 .micro {
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.625rem;
@@ -31,7 +31,7 @@ body {
   color: var(--muted);
 }
 
-/* frame panel - the "window" card style */
+/* card panels */
 .frame {
   background: var(--surface);
   border: 1px solid var(--cyan);
@@ -42,7 +42,7 @@ body {
   border-color: var(--cobalt);
 }
 
-/* focus states for interactive elements */
+/* focus rings */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -51,7 +51,7 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-/* form field style - terminal vibe */
+/* form inputs */
 input,
 textarea {
   background: var(--surface);
@@ -75,7 +75,7 @@ textarea::placeholder {
   font-size: 0.75rem;
 }
 
-/* brutalist bento item - hover lift + hard shadow */
+/* bento cards w/ shadow */
 .bento-item {
   background: var(--surface);
   border: 2px solid var(--dark);
@@ -107,7 +107,7 @@ textarea::placeholder {
   z-index: 1;
 }
 
-/* brutalist hover effect - subtle press-in on hover */
+/* brutalist card hover */
 .frame-brutalist {
   position: relative;
   isolation: isolate;
@@ -121,7 +121,7 @@ textarea::placeholder {
   box-shadow: 2px 2px 0 0 var(--cobalt);
 }
 
-/* L-shaped corner brackets - technical targeting aesthetic */
+/* corner brackets */
 .corner-brackets {
   position: relative;
 }
@@ -155,7 +155,7 @@ textarea::placeholder {
   border-color: var(--cobalt);
 }
 
-/* Static variant - always cobalt, no hover effect */
+/* static brackets - no hover */
 .corner-brackets-static.corner-brackets::before,
 .corner-brackets-static.corner-brackets::after,
 .corner-brackets-static.corner-brackets-full > .corner,
@@ -163,7 +163,7 @@ textarea::placeholder {
   border-color: var(--cobalt);
 }
 
-/* Single corner variants */
+/* single corner */
 .corner-bracket-single {
   position: relative;
   overflow: visible;
@@ -208,7 +208,7 @@ textarea::placeholder {
   border-color: var(--cobalt);
 }
 
-/* Variant with all four corners */
+/* all 4 corners */
 .corner-brackets-full {
   position: relative;
 }
@@ -251,7 +251,7 @@ textarea::placeholder {
   border-color: var(--cobalt);
 }
 
-/* Section header decoration */
+/* section headers */
 .section-header {
   position: relative;
   display: inline-block;
@@ -268,7 +268,7 @@ textarea::placeholder {
   background: var(--cobalt);
 }
 
-/* Crosshair/target decoration for special elements */
+/* crosshair deco */
 .crosshair {
   position: relative;
 }
@@ -297,7 +297,7 @@ textarea::placeholder {
   transform: translateX(-50%);
 }
 
-/* Corner brackets that appear on hover - for buttons */
+/* hover brackets for buttons */
 .hover-brackets {
   position: relative;
 }
@@ -335,7 +335,7 @@ textarea::placeholder {
   transform: translate(0, 0);
 }
 
-/* Expanding line accent - grows on hover */
+/* line that grows on hover */
 .line-expand {
   position: relative;
 }
@@ -356,7 +356,7 @@ textarea::placeholder {
   width: 24px;
 }
 
-/* Project card enhancements */
+/* project cards */
 .project-card {
   position: relative;
 }
@@ -381,7 +381,7 @@ textarea::placeholder {
   transform: translateY(-2px);
 }
 
-/* Staggered corner brackets for cards */
+/* staggered brackets */
 .stagger-brackets {
   position: relative;
 }
@@ -435,13 +435,13 @@ textarea::placeholder {
   transform: translate(0, 0);
 }
 
-/* Section divider line */
+/* divider */
 .divider-animated {
   height: 1px;
   background: var(--cyan);
 }
 
-/* Meta row hover effect */
+/* meta hover */
 .meta-hover {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }

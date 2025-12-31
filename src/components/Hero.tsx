@@ -4,6 +4,7 @@ import { useRef } from "react"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import Image from "next/image"
 import { CornerBrackets } from "@/components/CornerBrackets"
+import { InteractiveHoverLink } from "@/components/ui/InteractiveHoverButton"
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -31,7 +32,7 @@ export function Hero() {
   return (
     <div className="relative flex items-center min-h-[70vh]">
       <div ref={containerRef} className="relative w-full max-w-5xl px-4 overflow-x-clip" onMouseMove={handleMouseMove}>
-        {/* Oversized index number - positioned to bleed off left edge */}
+        {/* big bg number */}
         <motion.div
           className="absolute -left-8 top-1/2 -translate-y-1/2 text-[28rem] font-mono font-bold text-cobalt/[0.04] select-none pointer-events-none leading-none tracking-tighter"
           style={{ x: numberX, y: numberY }}
@@ -46,9 +47,9 @@ export function Hero() {
           </motion.span>
         </motion.div>
 
-        {/* Main content - asymmetric layout */}
+        {/* main content */}
         <div className="relative flex">
-          {/* Left column - vertical text */}
+          {/* left sidebar */}
           <div className="hidden md:flex flex-col items-center justify-center pr-16 border-r border-cyan">
             <motion.span
               className="font-mono text-[10px] text-muted tracking-mega uppercase"
@@ -60,7 +61,7 @@ export function Hero() {
               INDEX
             </motion.span>
 
-            {/* Vertical accent line */}
+            {/* accent line */}
             <div className="relative h-32 w-px bg-cyan mt-8">
               <motion.div
                 className="absolute top-0 left-0 w-full bg-cobalt origin-top"
@@ -70,7 +71,7 @@ export function Hero() {
               />
             </div>
 
-            {/* Section number */}
+            {/* number */}
             <motion.div
               className="mt-6 font-mono text-xs text-cobalt"
               initial={{ opacity: 0 }}
@@ -81,9 +82,9 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Center - main content */}
+          {/* center content */}
           <div className="flex-1 pl-0 md:pl-16 py-12">
-            {/* Logo */}
+            {/* logo */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -100,7 +101,7 @@ export function Hero() {
               />
             </motion.div>
 
-            {/* Type badge */}
+            {/* badge */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -113,7 +114,7 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Main headline */}
+            {/* headline */}
             <CornerBrackets static className="relative mb-10 min-h-[140px]">
               <motion.h1
                 className="text-4xl md:text-5xl font-sans font-bold text-dark leading-[1.1] tracking-tight uppercase"
@@ -145,7 +146,7 @@ export function Hero() {
               </motion.h1>
             </CornerBrackets>
 
-            {/* Meta info row */}
+            {/* meta row */}
             <div className="flex flex-wrap items-end justify-between gap-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -153,7 +154,7 @@ export function Hero() {
                 transition={{ duration: 0.4, delay: 0.6 }}
                 className="flex items-center gap-6"
               >
-                {/* Location */}
+                {/* location */}
                 <div>
                   <span className="block font-mono text-[10px] uppercase tracking-mega text-muted mb-1">
                     LOCATION
@@ -163,10 +164,9 @@ export function Hero() {
                   </span>
                 </div>
 
-                {/* Divider */}
                 <div className="h-8 w-px bg-cyan" />
 
-                {/* Status */}
+                {/* status */}
                 <div>
                   <span className="block font-mono text-[10px] uppercase tracking-mega text-muted mb-1">
                     STATUS
@@ -176,10 +176,9 @@ export function Hero() {
                   </span>
                 </div>
 
-                {/* Divider */}
                 <div className="h-8 w-px bg-cyan hidden sm:block" />
 
-                {/* Year */}
+                {/* year */}
                 <div className="hidden sm:block">
                   <span className="block font-mono text-[10px] uppercase tracking-mega text-muted mb-1">
                     EST.
@@ -190,32 +189,14 @@ export function Hero() {
                 </div>
               </motion.div>
 
-              {/* CTA */}
-              <motion.a
-                href="#contact"
+              {/* cta */}
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.7 }}
-                className="group flex items-center gap-3 border border-cobalt bg-cobalt px-4 py-2 hover:bg-dark hover:border-dark transition-colors hover-brackets"
               >
-                <span className="font-mono text-xs uppercase tracking-mega text-surface transition-colors">
-                  GET IN TOUCH
-                </span>
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  className="text-surface transition-colors"
-                >
-                  <path
-                    d="M3 8H13M13 8L9 4M13 8L9 12"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="square"
-                  />
-                </svg>
-              </motion.a>
+                <InteractiveHoverLink href="#contact" text="GET IN TOUCH" />
+              </motion.div>
             </div>
           </div>
         </div>
